@@ -1,0 +1,114 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand tokens */
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-pink-hot: var(--pink-hot);
+  --color-pink-soft: var(--pink-soft);
+  --color-coral: var(--coral);
+  --color-lilac: var(--lilac);
+  --color-gold: var(--gold);
+
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --canvas: hsl(36 40% 98%);
+  --ink: hsl(330 20% 15%);
+  --pink-hot: hsl(330 85% 55%);
+  --pink-soft: hsl(330 100% 96%);
+  --coral: hsl(12 90% 70%);
+  --lilac: hsl(270 70% 94%);
+  --gold: hsl(42 60% 60%);
+
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: hsl(0 0% 100%);
+  --card-foreground: var(--ink);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: var(--ink);
+  --primary: var(--pink-hot);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: var(--pink-soft);
+  --secondary-foreground: var(--ink);
+  --muted: var(--pink-soft);
+  --muted-foreground: hsl(330 15% 40%);
+  --accent: var(--coral);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0 70% 55%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(330 30% 92%);
+  --input: hsl(330 30% 92%);
+  --ring: var(--pink-hot);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+@keyframes entrance {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@utility animate-float { animation: float 10s ease-in-out infinite; }
+@utility animate-entrance { animation: entrance 1s var(--ease-out-expo) both; }
+@utility animate-marquee { animation: marquee 40s linear infinite; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: hsl(330 85% 55% / 0.2); }
+}
